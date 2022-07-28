@@ -1,0 +1,11 @@
+services:
+  vault:
+    image: vault:1.11.1
+    ports:
+      - 8200:8200
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: DEV_TOKEN
+      VAULT_LOCAL_CONFIG: '{"backend": {"file": {"path": "/vault/file"}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}'
+      VAULT_DISABLE_MLOCK: "true"
+    cap_add:
+      - IPC_LOCK
